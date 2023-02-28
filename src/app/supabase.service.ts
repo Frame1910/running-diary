@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, SimpleChange } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
 
@@ -38,5 +38,16 @@ export class SupabaseService {
 
   async signout() {
     const { error } = await this.supabase.auth.signOut()
+  }
+
+  async getCurrentUserLogs() {
+    const user = await this.getUser();
+    const { data, error } = await this.supabase.from('running.logs').select().eq('userId', user?.id);
+    if (!error) {
+      return data;
+    } else {
+      console.error(error)
+      return null;
+    }
   }
 }

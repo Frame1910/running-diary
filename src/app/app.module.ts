@@ -31,12 +31,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LogViewComponent } from './log-view/log-view.component';
+import { CreateLogDialogComponent } from './create-log-dialog/create-log-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    LogViewComponent
+    LogViewComponent,
+    CreateLogDialogComponent
   ],
   imports: [
     BrowserModule,
