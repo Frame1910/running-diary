@@ -9,6 +9,8 @@ import { SupabaseService } from './supabase.service';
 export class AppComponent implements OnInit {
   title = 'running-diary';
 
+  user$ = this.supabase.getUser();
+
   constructor(
     public supabase: SupabaseService,
   ) { }

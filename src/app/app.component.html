@@ -1,0 +1,23 @@
+<ng-container *ngIf="user$ | async as user">
+  <mat-toolbar color="primary" class="toolbar">
+    <!-- <button mat-icon-button (click)="sideNav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button> -->
+    <span>Running Logger</span>
+    <span style="flex: 1 1 auto"></span>
+    <button mat-button [matMenuTriggerFor]="menu">
+      {{ user.email }} <mat-icon>person</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="supabase.signout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+</ng-container>
+
+<main style="margin: 15px">
+  <router-outlet></router-outlet>
+</main>
