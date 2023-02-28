@@ -64,7 +64,7 @@ enable_confirmations = false
 [auth.external.google]
 enabled = true
 client_id = "502796033143-6ap7g872gs48q5retbp3btsuf1lr5ul1.apps.googleusercontent.com"
-secret = "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"
+secret = ""
 # Overrides the default auth redirectUrl.
 redirect_uri = "http://localhost:54321/auth/v1/callback"
 # Overrides the default auth provider URL. Used to support self-hosted gitlab, single-tenant Azure,
