@@ -52,4 +52,14 @@ export class SupabaseService {
       return null
     }
   }
+
+  async getSingleLog(id: string) {
+    const { data, error } = await this.supabase.from('running_logs').select().eq('runId', id).single();
+    if (!error) {
+      return data as LogEntry
+    } else {
+      console.error(error);
+      return null
+    }
+  }
 }

@@ -4,8 +4,12 @@
   </button>
   <section>
     <mat-nav-list *ngIf="logs$ | async as logs" hideSingleSelectionIndicator>
-      <mat-list-item *ngFor="let log of logs" [routerLink]="[log.runId]">
-        <h3 matListItemTitle>{{ log.date | date : "MMM d, y, h:mm a" }}</h3>
+      <mat-list-item
+        *ngFor="let log of logs"
+        [routerLink]="['/log', log.runId]"
+      >
+        <div matListItemTitle *ngIf="log.name">{{ log.name }}</div>
+        <div matListItemLine>{{ log.date | date : "MMM d, y, h:mm a" }}</div>
         <div matListItemLine>
           {{ log.actual_distance }}km
           <ng-container *ngIf="log.goal_distance"

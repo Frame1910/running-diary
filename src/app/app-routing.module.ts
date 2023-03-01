@@ -8,10 +8,9 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: '', redirectTo: 'logs', pathMatch: 'full' },
   {
-    path: 'logs', component: LogViewComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
-      { path: ':id', component: LogComponent }
-    ]
+    path: 'logs', component: LogViewComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard]
   },
+  { path: 'log/:id', component: LogComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent }
 ];
 

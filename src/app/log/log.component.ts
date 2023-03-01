@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SupabaseService } from '../supabase.service';
+import { LogEntry } from '../types';
 
 @Component({
   selector: 'app-log',
@@ -7,14 +9,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./log.component.scss']
 })
 export class LogComponent implements OnInit {
-  id: any
+  runId: string | null
+
+  log$: Promise<any> | null = null
 
   constructor(
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private supabase: SupabaseService,
+  ) {
+    this.runId = this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id)
+    this.log$ = this.supabase.getSingleLog(this.runId!);
   }
 }

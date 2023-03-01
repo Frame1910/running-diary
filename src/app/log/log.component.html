@@ -1,1 +1,8 @@
-<p>log works!</p>
+<ng-container *ngIf="log$ | async as log">
+  <main>
+    <mat-progress-spinner
+      [value]="(log.actual_distance / log.goal_distance) * 100"
+    ></mat-progress-spinner>
+    <h1></h1>
+  </main>
+</ng-container>

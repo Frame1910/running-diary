@@ -42,6 +42,7 @@ export interface Database {
           difficulty: number | null
           goal_distance: number | null
           goal_pace: number | null
+          name: string | null
           notes: string | null
           runId: string
           userId: string | null
@@ -53,6 +54,7 @@ export interface Database {
           difficulty?: number | null
           goal_distance?: number | null
           goal_pace?: number | null
+          name?: string | null
           notes?: string | null
           runId: string
           userId?: string | null
@@ -64,6 +66,7 @@ export interface Database {
           difficulty?: number | null
           goal_distance?: number | null
           goal_pace?: number | null
+          name?: string | null
           notes?: string | null
           runId?: string
           userId?: string | null
