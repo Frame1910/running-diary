@@ -9,18 +9,14 @@ import { LogEntry } from '../types';
   styleUrls: ['./log.component.scss']
 })
 export class LogComponent implements OnInit {
-  runId: string | null
-
-  log$: Promise<any> | null = null
+  log$ = this.supabase.getSingleLog(this.route.snapshot.paramMap.get('id')!);
 
   constructor(
     private route: ActivatedRoute,
     private supabase: SupabaseService,
   ) {
-    this.runId = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.log$ = this.supabase.getSingleLog(this.runId!);
   }
 }

@@ -45,6 +45,7 @@ export interface Database {
           name: string | null
           notes: string | null
           runId: string
+          time: number | null
           userId: string | null
         }
         Insert: {
@@ -57,6 +58,7 @@ export interface Database {
           name?: string | null
           notes?: string | null
           runId: string
+          time?: number | null
           userId?: string | null
         }
         Update: {
@@ -69,6 +71,7 @@ export interface Database {
           name?: string | null
           notes?: string | null
           runId?: string
+          time?: number | null
           userId?: string | null
         }
       }

@@ -10,17 +10,8 @@
       >
         <div matListItemTitle *ngIf="log.name">{{ log.name }}</div>
         <div matListItemLine>{{ log.date | date : "MMM d, y, h:mm a" }}</div>
-        <div matListItemLine>
-          {{ log.actual_distance }}km
-          <ng-container *ngIf="log.goal_distance"
-            >(goal of {{ log.goal_distance }}km)</ng-container
-          >
-        </div>
-        <div matListItemLine>
-          {{ log.actual_pace | pace }}
-          <ng-container *ngIf="log.goal_pace"
-            >(goal of {{ log.goal_pace | pace }})</ng-container
-          >
+        <div matListItemLine *ngIf="log.time">
+          {{ log.time | time }}, {{ log.actual_distance }}km
         </div>
         <div *ngIf="log.goal_distance" matListItemAvatar>
           <mat-progress-spinner

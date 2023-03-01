@@ -1,8 +1,41 @@
+<button mat-button style="margin-bottom: 15px" [routerLink]="['/logs']">
+  <mat-icon>arrow_back</mat-icon> Back to list
+</button>
 <ng-container *ngIf="log$ | async as log">
   <main>
-    <mat-progress-spinner
-      [value]="(log.actual_distance / log.goal_distance) * 100"
-    ></mat-progress-spinner>
-    <h1></h1>
+    <section class="header-container">
+      <div *ngIf="log.goal_distance">
+        <mat-progress-spinner
+          color="accent"
+          [value]="(log.actual_distance / log.goal_distance) * 100"
+        ></mat-progress-spinner>
+        <h3 class="goal-text">
+          {{ (log.actual_distance / log.goal_distance) * 100 }}%
+        </h3>
+      </div>
+      <div>
+        <h2>{{ log.name }}</h2>
+        <p>{{ log.date | date }}</p>
+        <p>{{ log.date | date : "hh:mm a" }}</p>
+      </div>
+    </section>
+    <mat-divider></mat-divider>
+    <section>
+      <h3>Pace</h3>
+      <ng-container *ngIf="log.goal_pace">
+        <p>Goal: {{ log.goal_pace | pace }}</p>
+      </ng-container>
+      <p>Actual: {{ log.actual_pace | pace }}</p>
+    </section>
+    <section *ngIf="log.difficulty">
+      <h3>Difficulty</h3>
+      <mat-progress-bar
+        color="accent"
+        [value]="(log.difficulty / 5) * 100"
+      ></mat-progress-bar>
+      <p class="mat-caption" style="text-align: center">
+        {{ log.difficulty }}/5
+      </p>
+    </section>
   </main>
 </ng-container>
