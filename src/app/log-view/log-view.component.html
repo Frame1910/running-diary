@@ -1,8 +1,32 @@
-<button mat-fab (click)="addNewLog()" color="accent">
-  <mat-icon>add</mat-icon>
-</button>
-<mat-list *ngIf="logs$ | async as logs">
-  <mat-list-item *ngFor="let log of logs">
-    {{ log }}
-  </mat-list-item>
-</mat-list>
+<main class="container">
+  <button mat-stroked-button (click)="addNewLog()" color="accent">
+    <mat-icon>add</mat-icon> Add log
+  </button>
+  <section>
+    <mat-nav-list *ngIf="logs$ | async as logs" hideSingleSelectionIndicator>
+      <mat-list-item *ngFor="let log of logs" [routerLink]="[log.runId]">
+        <h3 matListItemTitle>{{ log.date | date : "MMM d, y, h:mm a" }}</h3>
+        <div matListItemLine>
+          {{ log.actual_distance }}km
+          <ng-container *ngIf="log.goal_distance"
+            >(goal of {{ log.goal_distance }}km)</ng-container
+          >
+        </div>
+        <div matListItemLine>
+          {{ log.actual_pace | pace }}
+          <ng-container *ngIf="log.goal_pace"
+            >(goal of {{ log.goal_pace | pace }})</ng-container
+          >
+        </div>
+        <div *ngIf="log.goal_distance" matListItemAvatar>
+          <mat-progress-spinner
+            diameter="40"
+            [value]="(log.actual_distance / log.goal_distance) * 100"
+          >
+          </mat-progress-spinner>
+          <span>{{ (log.actual_distance / log.goal_distance) * 100 }}%</span>
+        </div>
+      </mat-list-item>
+    </mat-nav-list>
+  </section>
+</main>

@@ -32,13 +32,17 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LogViewComponent } from './log-view/log-view.component';
 import { CreateLogDialogComponent } from './create-log-dialog/create-log-dialog.component';
+import { PacePipe } from './pipes/pace.pipe';
+import { LogComponent } from './log/log.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     LogViewComponent,
-    CreateLogDialogComponent
+    CreateLogDialogComponent,
+    PacePipe,
+    LogComponent
   ],
   imports: [
     BrowserModule,

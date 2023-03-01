@@ -13,7 +13,8 @@ export class LogViewComponent {
   constructor(
     private supabase: SupabaseService,
     private matDialog: MatDialog,
-  ) { }
+  ) {
+  }
 
   logs$ = this.supabase.getCurrentUserLogs();
 

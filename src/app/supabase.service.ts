@@ -1,6 +1,8 @@
 import { Injectable, SimpleChange } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from 'src/environments/environment';
+import { Database } from './schema';
+import { LogEntry } from './types';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   constructor() {
-    this.supabase = createClient(environment.supabaseUrl, environment.supabaseKey)
+    this.supabase = createClient<Database>(environment.supabaseUrl, environment.supabaseKey)
   }
 
 
@@ -42,12 +44,12 @@ export class SupabaseService {
 
   async getCurrentUserLogs() {
     const user = await this.getUser();
-    const { data, error } = await this.supabase.from('running.logs').select().eq('userId', user?.id);
+    const { data, error } = await this.supabase.from('running_logs').select().eq('userId', user?.id);
     if (!error) {
-      return data;
+      return data as LogEntry[];
     } else {
-      console.error(error)
-      return null;
+      console.error(error);
+      return null
     }
   }
 }

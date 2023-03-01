@@ -18,5 +18,16 @@ export class AuthGuard implements CanActivate {
       return false
     }
   }
+  async canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Promise<boolean> {
+    const user = await this.supabase.getUser()
+    if (user) {
+      return true
+    } else {
+      this.router.navigate(['/login']);
+      return false
+    }
+  }
 
 }

@@ -2,11 +2,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LogViewComponent } from './log-view/log-view.component';
+import { LogComponent } from './log/log.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'logs', pathMatch: 'full' },
-  { path: 'logs', component: LogViewComponent, canActivate: [AuthGuard] },
+  {
+    path: 'logs', component: LogViewComponent, canActivate: [AuthGuard], canActivateChild: [AuthGuard], children: [
+      { path: ':id', component: LogComponent }
+    ]
+  },
   { path: 'login', component: LoginComponent }
 ];
 
